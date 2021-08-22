@@ -1,6 +1,8 @@
 <?php
+namespace App\Models;
 
 use App\Models\Vehicule;
+use App\Models\Travel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +14,7 @@ class Driver extends Model
 	use SoftDeletes;
     protected $table = 'app.drivers';
 	protected $fillable = [
-		'code',
+		'id',
 		'birthday',
         'email',
         'joined_date',
@@ -21,10 +23,6 @@ class Driver extends Model
 
 
 	];
-	protected $hidden = [
-        
-    ];
-
 	public function travels()
 	{
 		return $this->hasMany(Travel::class);

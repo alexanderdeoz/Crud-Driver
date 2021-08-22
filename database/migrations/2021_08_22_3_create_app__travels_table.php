@@ -14,10 +14,11 @@ class CreateAppTravelsTable extends Migration
     public function up()
     {
         Schema::connection(env('DB_CONNECTION_APP'))->create('app.travels', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->foreignId('driver_id')->constrained('app.drivers');              
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

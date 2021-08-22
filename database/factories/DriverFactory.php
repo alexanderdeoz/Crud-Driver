@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Driver;
+use app\Models\Driver;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -24,7 +24,7 @@ class DriverFactory extends Factory
     public function definition()
     {
         return [
-            'code'=> $this->faker->unique()->ean8(),
+            'id'=> $this->faker->unique()->ean8(),
             'name'=> $this->faker->name(),
             'birthday' => $this->faker->date(),
             'joined_date'=> $this->faker->date(),

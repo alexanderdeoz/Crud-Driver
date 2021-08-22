@@ -22,11 +22,12 @@ class TravelFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->unique()->ean8(),
+            'id' => $this->faker->unique()->ean8(),
             'start_time' => $this->faker->time('H:i:s'),
             'end_time' => $this->faker->time('H:i:s'),
             
             'driver_id'=> Driver::all()->random()->id,
+            
         ];
     }
 }

@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 
-use App\Models\Driver;
+
 use App\Models\Vehicule;
 use App\Models\Travel;
-
+use App\Models\Driver;
 
 use Illuminate\Database\Seeder;
 

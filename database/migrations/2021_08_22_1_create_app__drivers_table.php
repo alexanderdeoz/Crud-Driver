@@ -14,13 +14,13 @@ class CreateAppDriversTable extends Migration
     public function up()
     {
         Schema::connection(env('DB_CONNECTION_APP'))->create('app.drivers', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             // $table->foreignId('vehicule_id')->constrained('app.vehicules');
             $table->string('name')->comment('Nombre del conductor');
-            $table->date('birthdate');
+            $table->date('birthday');
             $table->date('joined_date');
             $table->string('email')->unique();
-            $table->double('phone')->comment('Telefono del conductor');
+            $table->string('phone')->comment('Telefono del conductor');
             $table->softDeletes();
             $table->timestamps();
         });

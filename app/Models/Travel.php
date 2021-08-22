@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Driver;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ class Travel extends Model
     use SoftDeletes;
     protected $table = 'app.travels';
 	protected $fillable = [
-		'code',
+		'id',
         'end_time',
         'start_time',
         '',
