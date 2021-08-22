@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\V1\DriverController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\TravelController; 
 /*
 |--------------------------------------------------------------------------
 | API Routes
