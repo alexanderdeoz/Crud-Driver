@@ -23,4 +23,6 @@ class Travel extends Model
 	{
 		return $this->belongsTo(Driver::class);
 	}
+    function getCodeAttribute(){ 
+        return $this->attributes['id'] . strtolower($this->attributes['code']);}
 }

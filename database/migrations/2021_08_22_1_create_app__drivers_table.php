@@ -15,7 +15,7 @@ class CreateAppDriversTable extends Migration
     {
         Schema::connection(env('DB_CONNECTION_APP'))->create('app.drivers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vehicule_id')->constrained('app.vehicules');
+            // $table->foreignId('vehicule_id')->constrained('app.vehicules');
             $table->string('name')->comment('Nombre del conductor');
             $table->date('birthdate');
             $table->date('joined_date');

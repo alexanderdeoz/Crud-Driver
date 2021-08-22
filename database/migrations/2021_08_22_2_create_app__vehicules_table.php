@@ -13,8 +13,9 @@ class CreateAppVehiculesTable extends Migration
      */
     public function up()
     {
-        Schema::connection(env('DB_CONNECTION_APP'))->createcreate('app.vehicules', function (Blueprint $table) {
-            $table->id('code');
+        Schema::connection(env('DB_CONNECTION_APP'))->create('app.vehicules', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('driver_id')->constrained('app.drivers');
             $table->string('color')->comment('Color del vehiculo');
             $table->string('model')->comment('Modelo del vehiculo');
             $table->string('plate_car');

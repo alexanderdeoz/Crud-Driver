@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Driver;
 use App\Models\Travel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,10 +22,11 @@ class TravelFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->ean8(),
+            'code' => $this->faker->unique()->ean8(),
             'start_time' => $this->faker->time('H:i:s'),
             'end_time' => $this->faker->time('H:i:s'),
             
+            'driver_id'=> Driver::all()->random()->id,
         ];
     }
 }

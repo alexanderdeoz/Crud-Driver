@@ -15,24 +15,21 @@ use App\Http\Controllers\VehiculeController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-// Route::apiResource('drivers', DriverController::class);
-// Route::prefix('driver')->group(function () {
-//     Route::get('/',[ DriverController::class, 'getAll']);
-//     Route::post('/',[ DriverController::class, 'create']);
-//     Route::delete('/{id}',[ DriverController::class, 'delete']);
-//     Route::get('/{id}',[ DriverController::class, 'get']);
-//     Route::put('/{id}',[ DriverController::class, 'update']);
-// });
 Route::apiResource('drivers', DriverController::class);
 Route::prefix('driver')->group(function () {
     Route::get('{driver}', [DriverController::class, 'index']);
     Route::patch('destroys', [DriverController::class, 'destroys']);
 });
 
+
+Route::prefix('drivers')->group(function () {
+    Route::get('/',[ DriverController::class, 'index']);
+    Route::post('/',[ DriverController::class, 'store']);
+    Route::delete('/{driver}',[ DriverController::class, 'delete']);
+    Route::get('/{driver}',[ DriverController::class, 'show']);
+    Route::put('/{driver}',[ DriverController::class, 'update']);
+});
 Route::apiResource('vehicules', VehiculeController::class);
 
 Route::apiResource('travels',TravelController::class);

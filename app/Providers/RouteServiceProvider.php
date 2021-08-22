@@ -53,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
     }
     protected function mapApiRoutes()
     {
-        $version = 'v1';
+        $version = 'V1';
         Route::prefix("api/${version}")
             ->middleware('api')
             ->group(base_path("routes/api/${version}/public.php"));

@@ -17,8 +17,16 @@ class Vehicule extends Model
         'type',
         
 	];
+    
     public function drivers()
 	{
 		return $this->belongsTo(Driver::class);
 	}
+    public function travels()
+	{
+		return $this->hasMany(Travel::class);
+	}
+    function getCodeAttribute(){ 
+    return $this->attributes['id'] . strtolower($this->attributes['code']);
+}
 }

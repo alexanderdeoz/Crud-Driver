@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Vehicule;
+use Driver;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VehiculeFactory extends Factory
@@ -22,11 +23,13 @@ class VehiculeFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->ean8(),
+            'code' => $this->faker->unique()->ean8(),
             'color'=> $this->faker->hexColor(['rojo', 'amarillo', 'negro']),
             'model'=> $this->faker->sentence(),
             'plate_car'=> $this->faker->sentence(),
             'type'=> $this->faker->word(),
+
+            'driver_id'=> Driver::all()->random()->id,
 
         ];
     }
