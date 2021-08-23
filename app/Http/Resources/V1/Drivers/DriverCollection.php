@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Driver;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class DriverCollection extends ResourceCollection
@@ -14,8 +15,9 @@ class DriverCollection extends ResourceCollection
      */
     public function toArray($request)
     {
+       //
         return [
-            'data' => $this->collection,
+            'data' => $this->collection
             
         ];
     }

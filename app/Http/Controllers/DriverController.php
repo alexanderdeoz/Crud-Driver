@@ -24,7 +24,14 @@ class DriverController extends Controller
     
     public function index()
     {
-        return new DriverCollection(Driver::paginate());
+    //  return new DriverCollection(Driver::paginate());
+        $drivers = Driver::get();
+        return response()->json(
+           ['data'=> $drivers,
+           'msg'=>['sumary'=> 'consulta correcta',
+           'detail'=>'la consulta esta correcta', 
+           'code'=>'201']], 201);
+
     }
 
     /**
@@ -36,10 +43,10 @@ class DriverController extends Controller
     public function store(StoreDriverRequest $request)
     {
         $drivers = new Driver();
+        $drivers->name= $request->input('name');
         $drivers->birthdate = $request->input('birthdate');
         $drivers->joined_date = $request->input('joined_date');
         $drivers->email = $request->input('email');
-        $drivers->name= $request->input('name');
         $drivers->phone= $request->input('phone');
         $drivers->save();
 
@@ -64,7 +71,18 @@ class DriverController extends Controller
      */
     public function show($drivers)
     {
-        return new DriverResource($drivers);
+        // return new DriverResource($drivers);
+        $drivers = Driver::find($drivers);
+        return response()->json(
+            [
+                'data' => $drivers,
+                'msg' => [
+                    'summary' => 'consulta correcta',
+                    'detail' => 'la consulta del consuctor se ejecutó correctamente',
+                    'code' => '200'
+                ]
+            ], 200
+        );;
     }
 
     /**
@@ -77,10 +95,10 @@ class DriverController extends Controller
     public function update(UpdateDriverRequest $request, $drivers)
     {
         $drivers = Driver::find($drivers);
+        $drivers->name= $request->input('name');
         $drivers->birthdate = $request->input('birthdate');
         $drivers->joined_date = $request->input('joined_date');
         $drivers->email = $request->input('email');
-        $drivers->name= $request->input('name');
         $drivers->phone= $request->input('phone');
         $drivers->save();
 

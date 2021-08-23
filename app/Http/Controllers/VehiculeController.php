@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicule;
 use Illuminate\Http\Request;
 
 class VehiculeController extends Controller
@@ -13,9 +14,14 @@ class VehiculeController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $vehicules = Vehicule::get();
+        return response()->json(
+           ['data'=> $vehicules,
+           'msg'=>['sumary'=> 'consulta correcta',
+           'detail'=>'la consulta esta correcta', 
+           'code'=>'201']], 201);
 
+        }
     /**
      * Store a newly created resource in storage.
      *
