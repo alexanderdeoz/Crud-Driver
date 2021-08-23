@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DriverResource extends JsonResource
+class TravelResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,9 @@ class DriverResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'birthdate' => $this->birthdate,
-            'joined_date' => $this->joined_date,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            
+            'end_time' => $this->end_time,
+            'start_time' => $this->start_time,
+                        
         ];
     }
 }

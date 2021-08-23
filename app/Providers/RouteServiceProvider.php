@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    // protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -38,38 +38,41 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            
+            $this->mapApiRoutes();
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }
 
-    protected function configureRateLimiting()
+     protected function mapApiRoutes()
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
-        });
-    }
-    protected function mapApiRoutes()
-    {
-        $version = 'V1';
+        $version = 'v1';
         Route::prefix("api/${version}")
             ->middleware('api')
+            ->namespace($this->namespace)
             ->group(base_path("routes/api/${version}/public.php"));
 
         Route::prefix("api/${version}")
             ->middleware(['api', 'auth:sanctum','verify_user_blocked'])
+            ->namespace($this->namespace)
             ->group(base_path("routes/api/${version}/private.php"));
 
         Route::prefix("api/${version}")
             ->middleware(['api', 'auth:sanctum'])
+            ->namespace($this->namespace)
             ->group(base_path("routes/api/${version}/authentication.php"));
+
     }
     /**
      * Configure the rate limiters for the application.
      *
      * @return void
      */
-    
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+        });
+    }
 }

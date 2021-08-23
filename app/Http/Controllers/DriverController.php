@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Http\Requests\V1\Drivers\DestroyDriverRequest;
-use App\Http\Request\V1\Drivers\StoreDriverRequest;
-use App\Http\Request\V1\Drivers\UpdateDriverRequest;
-use App\Http\Resources\V1\Drivers\DriverCollection;
-use App\Http\Resources\V1\Drivers\DriverResource;
+use App\Http\Requests\V1\Drivers\StoreDriverRequest;
+use App\Http\Requests\V1\Drivers\UpdateDriverRequest;
+use App\Http\Resources\DriverCollection;
+use App\Http\Resources\DriverResource;
 use Illuminate\Support\Facades\DB;
 
 class DriverController extends Controller 
@@ -41,7 +41,6 @@ class DriverController extends Controller
         $drivers->email = $request->input('email');
         $drivers->name= $request->input('name');
         $drivers->phone= $request->input('phone');
-        ('vehicle');
         $drivers->save();
 
         return response()->json(
@@ -83,7 +82,6 @@ class DriverController extends Controller
         $drivers->email = $request->input('email');
         $drivers->name= $request->input('name');
         $drivers->phone= $request->input('phone');
-        ('vehicle');('vehicle');
         $drivers->save();
 
         return response()->json(

@@ -16,8 +16,7 @@ class Travel extends Model
 		'id',
         'end_time',
         'start_time',
-        '',
-        '',
+        
 
 	];
     public function drivers()

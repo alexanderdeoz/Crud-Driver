@@ -17,6 +17,7 @@ class Vehicule extends Model
         'model',
         'plate_car',
         'type',
+        'driver_id',
         
 	];
     

@@ -23,8 +23,8 @@ class TravelFactory extends Factory
     {
         return [
             'id' => $this->faker->unique()->ean8(),
-            'start_time' => $this->faker->time('H:i:s'),
-            'end_time' => $this->faker->time('H:i:s'),
+            'start_time' => $this->faker->datetime(),
+            'end_time' => $this->faker->datetime(),
             
             'driver_id'=> Driver::all()->random()->id,
             
