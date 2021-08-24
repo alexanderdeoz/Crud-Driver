@@ -22,7 +22,13 @@ class TravelController extends Controller
     // }
         public function index()
         {
-            return new TravelCollection(Travel::paginate());
+            // return new TravelCollection(Travel::paginate());
+            $travels = Travel::get();
+        return response()->json(
+           ['data'=> $travels,
+           'msg'=>['sumary'=> 'consulta correcta',
+           'detail'=>'la consulta esta correcta', 
+           'code'=>'201']], 201);
         }
     
         /**
@@ -31,7 +37,7 @@ class TravelController extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
-        public function store(StoreTravelRequest $request)
+        public function store(Request $request)
         {
             $travels = new Travel();
             $travels->start_time= $request->input('start_time');
@@ -55,7 +61,18 @@ class TravelController extends Controller
          */
         public function show($travels)
         {
-            return new TravelResource($travels);
+            // return new TravelResource($travels);
+            $travels = Travel::find($travels);
+            return response()->json(
+                [
+                    'data' => $travels,
+                    'msg' => [
+                        'summary' => 'consulta correcta',
+                        'detail' => 'la consulta del viaje se ejecutó correctamente',
+                        'code' => '200'
+                    ]
+                ], 200
+            );;
         }
         /**
          * Update the specified resource in storage.

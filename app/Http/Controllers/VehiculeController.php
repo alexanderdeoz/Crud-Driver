@@ -30,7 +30,24 @@ class VehiculeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vehicules = new Vehicule();
+        $vehicules->color= $request->input('color');
+        $vehicules->model = $request->input('model');
+        $vehicules->plate_car = $request->input('plate_car');
+        $vehicules->type = $request->input('type');
+        $vehicules->save();
+
+        return response()->json(
+            [
+                'data' => $vehicules,
+                'msg' => [
+                    'summary' => 'Creado correctamente',
+                    'detail' => 'El conductor se creo correctamente',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
     }
 
     /**
@@ -61,9 +78,25 @@ class VehiculeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $vehicules)
     {
-        //
+        $vehicules = Vehicule::find($vehicules);
+        $vehicules->color= $request->input('color');
+        $vehicules->model = $request->input('model');
+        $vehicules->plate_car = $request->input('plate_car');
+        $vehicules->type = $request->input('type');
+        $vehicules->save();
+        return response()->json(
+            [
+                'data' => $vehicules,
+                'msg' => [
+                    'summary' => 'Actualizado correctamente',
+                    'detail' => 'EL conductor se actualizó correctamente',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
     }
 
     /**
@@ -72,8 +105,20 @@ class VehiculeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($vehicules)
     {
-        //
+        $vehicules = Vehicule::find($vehicules);
+        $vehicules->delete();
+        return response()->json(
+            [
+                'data' => $vehicules,
+                'msg' => [
+                    'summary' => 'Eliminado correctamente',
+                    'detail' => 'EL vehiculo se eliminó correctamente',
+                    'code' => '201'
+                ]
+            ],
+            201
+        );
     }
 }
