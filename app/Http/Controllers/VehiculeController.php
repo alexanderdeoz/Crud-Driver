@@ -39,9 +39,19 @@ class VehiculeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($vehicules)
     {
-        //
+        $vehicules = Vehicule::find($vehicules);
+        return response()->json(
+            [
+                'data' => $vehicules,
+                'msg' => [
+                    'summary' => 'consulta correcta',
+                    'detail' => 'la consulta del consuctor se ejecutó correctamente',
+                    'code' => '200'
+                ]
+            ], 200
+        );;
     }
 
     /**

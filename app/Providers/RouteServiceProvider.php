@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'App\\Http\\Controllers';
+    // protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -36,34 +36,37 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-        
         $this->routes(function () {
-            $this->mapApiRoutes();
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/api.php'));
+
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }
 
-     protected function mapApiRoutes()
-    {
-        $version = 'v1';
-        Route::prefix("api/${version}")
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path("routes/api/${version}/public.php"));
+    //  protected function mapApiRoutes()
+    // {
+    //     $version = 'v1';
+    //     Route::prefix("api/${version}")
+    //         ->middleware('api')
+    //         ->namespace($this->namespace)
+    //         ->group(base_path("routes/api/${version}/public.php"));
 
-        Route::prefix("api/${version}")
-            ->middleware(['api', 'auth:sanctum','verify_user_blocked'])
-            ->namespace($this->namespace)
-            ->group(base_path("routes/api/${version}/private.php"));
+    //     Route::prefix("api/${version}")
+    //         ->middleware(['api', 'auth:sanctum','verify_user_blocked'])
+    //         ->namespace($this->namespace)
+    //         ->group(base_path("routes/api/${version}/private.php"));
 
-        Route::prefix("api/${version}")
-            ->middleware(['api', 'auth:sanctum'])
-            ->namespace($this->namespace)
-            ->group(base_path("routes/api/${version}/authentication.php"));
+    //     Route::prefix("api/${version}")
+    //         ->middleware(['api', 'auth:sanctum'])
+    //         ->namespace($this->namespace)
+    //         ->group(base_path("routes/api/${version}/authentication.php"));
 
-    }
+    // }
     /**
      * Configure the rate limiters for the application.
      *

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\V1\Drivers\DestroyDriverRequest;
 use App\Http\Requests\V1\Drivers\StoreDriverRequest;
 use App\Http\Requests\V1\Drivers\UpdateDriverRequest;
+
 use App\Http\Resources\DriverCollection;
 use App\Http\Resources\DriverResource;
 use Illuminate\Support\Facades\DB;
@@ -40,11 +41,11 @@ class DriverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDriverRequest $request)
+    public function store(Request $request)
     {
         $drivers = new Driver();
         $drivers->name= $request->input('name');
-        $drivers->birthdate = $request->input('birthdate');
+        $drivers->birthday = $request->input('birthday');
         $drivers->joined_date = $request->input('joined_date');
         $drivers->email = $request->input('email');
         $drivers->phone= $request->input('phone');
@@ -92,7 +93,7 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDriverRequest $request, $drivers)
+    public function update(UpdateDriverRequest  $request, $drivers)
     {
         $drivers = Driver::find($drivers);
         $drivers->name= $request->input('name');
